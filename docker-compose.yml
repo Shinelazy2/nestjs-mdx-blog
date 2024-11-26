@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:8.0.22
+    container_name: mysql_boot
+    hostname: mysql_boot
+    restart: always
+    ports:
+      - 33306:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/scripts:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      TZ: Asia/Seoul
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --bind-address=0.0.0.0
+# TODO: 외부접속 허용하게 해야함!!!!
