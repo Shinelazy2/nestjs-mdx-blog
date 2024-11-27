@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { MdxTag } from './mdx-tag.entity';
 
 @Entity()
@@ -11,6 +11,12 @@ export class Tag {
 
   @OneToMany(() => MdxTag, (mdxTag) => mdxTag.tag)
   mdxTags: MdxTag[];
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   // constructor(partial: Partial<Tag>) {
   //   Object.assign(this, partial);
